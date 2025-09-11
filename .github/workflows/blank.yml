@@ -5,10 +5,8 @@ on: pull_request # run on pull request events
 permissions:
  pull-requests: write # grant write permission on the pull-requests endpoint
 jobs:
- list-vars:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Get all variables
-       run: |
-         curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-           https://api.github.com/repos/${{ github.repository }}/actions/variables
+  dump-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print all env vars
+        run: env
